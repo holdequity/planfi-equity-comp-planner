@@ -1,0 +1,24 @@
+{
+  "name": "planfi",
+  "owner": {
+    "name": "holdequity",
+    "url": "https://github.com/holdequity"
+  },
+  "metadata": {
+    "description": "planfi skills — financial planning and real-estate investment analysis powered by the public planfi MCP.",
+    "version": "1.2.0"
+  },
+  "plugins": [
+    {
+      "name": "equity-comp-planner",
+      "source": "./skills/equity-comp-planner",
+      "description": "Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossover, and assess single-stock concentration risk with a tax-aware diversification plan. Thin orchestration over the planfi MCP.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "author": {
+        "name": "holdequity",
+        "url": "https://github.com/holdequity"
+      }
+    }
+  ]
+}

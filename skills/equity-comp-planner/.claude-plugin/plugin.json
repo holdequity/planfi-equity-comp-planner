@@ -1,0 +1,13 @@
+{
+  "name": "equity-comp-planner",
+  "version": "1.0.0",
+  "description": "Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossover, and assess single-stock concentration risk with a tax-aware diversification plan. Thin orchestration over the planfi MCP.",
+  "license": "MIT",
+  "author": {
+    "name": "holdequity",
+    "url": "https://planfi.app"
+  },
+  "homepage": "https://github.com/holdequity/planfi-equity-comp-planner",
+  "repository": "https://github.com/holdequity/planfi-equity-comp-planner",
+  "keywords": ["rsu", "iso", "nso", "espp", "amt", "stock-concentration", "equity-comp"]
+}
