@@ -28,6 +28,8 @@ claude mcp add --transport http planfi https://ai.planfi.app/mcp
 
 ## Step 1 — (Optional) build a plan first to chain context + get a share link
 
+> **Feed it into the forecast (not just plan_id chaining):** `generate_financial_plan` now accepts `equity_compensation` directly as a plan input, so it flows into net worth, FIRE %, and Monte-Carlo backtesting — vested after-tax shares vest into the portfolio. Use the standalone analyze tool below for a focused what-if; pass `equity_compensation` into the plan to see its effect on the whole household forecast.
+
 If the user has (or wants) a full household model, call **`generate_financial_plan`** once and
 **capture the returned `plan_id`**. All three equity tools accept `{ plan_id }` (plus inline
 overrides), so they can resolve age, income, filing status, and net worth from the saved plan
