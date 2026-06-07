@@ -65,6 +65,38 @@ Restart Claude Code (or start a new session). The skill auto-loads by its descri
 See `SKILL.md` for the full instructions, exact tool params, and output format.
 Source + issues: <https://github.com/holdequity/planfi-equity-comp-planner>.
 
+## Use it in any MCP client (not just Claude Code)
+
+This skill is Claude Code packaging — but the engine is a standard
+[Model Context Protocol](https://modelcontextprotocol.io) server at
+`https://ai.planfi.app/mcp` (Streamable HTTP, no auth). Connect it from any
+MCP-capable agent and you get the same planfi tools directly. Every tool is
+**self-orchestrating** (it reports its own assumed defaults and suggests the
+next step), so it works well even without the skill wrapper.
+
+Most clients take an `mcpServers` config block:
+
+```json
+{
+  "mcpServers": {
+    "planfi": { "type": "http", "url": "https://ai.planfi.app/mcp" }
+  }
+}
+```
+
+| Client | How to add it |
+|--------|---------------|
+| **Claude Code** | `claude mcp add --transport http planfi https://ai.planfi.app/mcp` |
+| **Cursor** | add the block above to `~/.cursor/mcp.json` (field: `url`) |
+| **Windsurf** | `~/.codeium/windsurf/mcp_config.json` (field: `serverUrl`) |
+| **Cline / VS Code** | paste the block into the Cline MCP settings |
+| **Claude Desktop & stdio-only clients** | bridge with `npx -y mcp-remote https://ai.planfi.app/mcp` |
+| **ChatGPT (custom connectors / Deep Research)** | add a connector pointing at the MCP URL |
+| **Custom / your own agent** | plain MCP Streamable HTTP — POST JSON-RPC `tools/list` / `tools/call` to the URL with `Accept: application/json, text/event-stream` |
+
+Field names vary slightly by client and version — check your client's MCP docs;
+the URL is always `https://ai.planfi.app/mcp`.
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).
