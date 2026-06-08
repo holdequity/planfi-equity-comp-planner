@@ -71,7 +71,7 @@ Source + issues: <https://github.com/holdequity/planfi-equity-comp-planner>.
 This skill is Claude Code packaging — but the engine is a standard
 [Model Context Protocol](https://modelcontextprotocol.io) server at
 `https://ai.planfi.app/mcp` (Streamable HTTP, no auth). Connect it from any
-MCP-capable agent and you get the same planfi tools directly. Every tool is
+MCP-capable agent and you get the same PlanFi tools directly. Every tool is
 **self-orchestrating** (it reports its own assumed defaults and suggests the
 next step), so it works well even without the skill wrapper.
 
