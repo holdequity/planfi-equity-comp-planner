@@ -11,6 +11,9 @@ All equity valuation, AMT/tax math, and concentration thresholds live server-sid
 gathers inputs and calls the tools — it does **not** compute anything locally and bakes in no
 defaults of its own. Read-only.
 
+**Related skills:** for the pre-IPO/founder-specific 83(b) early-exercise election and the §1202 QSBS
+gain exclusion, see **startup-equity-planner** (`analyze_startup_equity`).
+
 ## Step 0 — Make sure the planfi tools are connected
 
 This skill uses these tools (may be namespaced, e.g. `mcp__planfi__analyze_equity_compensation`):
