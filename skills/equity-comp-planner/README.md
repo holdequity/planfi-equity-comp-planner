@@ -1,6 +1,8 @@
 # equity-comp-planner (Claude Agent Skill)
 
-Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossover, and assess single-stock concentration risk with a tax-aware diversification plan. Thin orchestration over the planfi MCP.
+Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossover, assess single-stock concentration risk with a tax-aware diversification plan, and decide whether to elect NUA (Net Unrealized Appreciation) on appreciated employer stock in a 401(k). Thin orchestration over the planfi MCP.
+
+**Example — NUA on 401(k) company stock:** *"I'm retiring with $600k of appreciated company stock in my 401(k) that cost me $80k — should I elect NUA or roll it to an IRA?"* → the skill calls `analyze_nua({ cost_basis: 80000, market_value: 600000, ordinary_taxable_income: 200000, filing_status: "married_joint" })` and leads with the NUA-vs-rollover advantage, breakeven ordinary rate, and recommended election (fictional figures).
 
 It's a **thin orchestration layer** over the public **planfi MCP** (`https://ai.planfi.app/mcp`,
 public, no auth) — all the math and financial logic live server-side. The skill itself bundles no
