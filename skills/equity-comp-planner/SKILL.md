@@ -12,7 +12,9 @@ gathers inputs and calls the tools — it does **not** compute anything locally 
 defaults of its own. Read-only.
 
 **Related skills:** for the pre-IPO/founder-specific 83(b) early-exercise election and the §1202 QSBS
-gain exclusion, see **startup-equity-planner** (`analyze_startup_equity`).
+gain exclusion, see **startup-equity-planner** (`analyze_startup_equity`). For an employer
+Nonqualified Deferred Comp (NQDC / 409A) election — deferring salary/bonus past qualified-plan caps,
+lump-vs-installment distribution, and creditor risk — see **deferred-comp** (`analyze_deferred_comp`).
 
 ## Step 0 — Make sure the planfi tools are connected
 
