@@ -4,7 +4,7 @@ Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossov
 
 **Example — NUA on 401(k) company stock:** *"I'm retiring with $600k of appreciated company stock in my 401(k) that cost me $80k — should I elect NUA or roll it to an IRA?"* → the skill calls `analyze_nua({ cost_basis: 80000, market_value: 600000, ordinary_taxable_income: 200000, filing_status: "married_joint" })` and leads with the NUA-vs-rollover advantage, breakeven ordinary rate, and recommended election (fictional figures).
 
-It's a **thin orchestration layer** over the public **planfi MCP** (`https://ai.planfi.app/mcp`,
+It's a **thin orchestration layer** over the public **planfi MCP** (`https://ai.planfi.app/mcp/free`,
 public, no auth) — all the math and financial logic live server-side. The skill itself bundles no
 engine; it just gathers inputs and calls the tools.
 
@@ -13,11 +13,13 @@ engine; it just gathers inputs and calls the tools.
 If the planfi tools aren't connected yet, run:
 
 ```
-claude mcp add --transport http planfi https://ai.planfi.app/mcp
+claude mcp add --transport http planfi https://ai.planfi.app/mcp/free
 ```
 
+> **Try free, then add your key.** The command above adds the **free** connector — `https://ai.planfi.app/mcp/free` (no key needed). Once you create an API key, add a **new** connector with the MCP url — `https://ai.planfi.app/mcp` — and authorize it with your key.
+
 On **claude.ai**: Settings → Connectors → add a custom connector pointing at
-`https://ai.planfi.app/mcp` (no auth). The skill also reminds you to do this if the tools are
+`https://ai.planfi.app/mcp/free` (no auth). The skill also reminds you to do this if the tools are
 missing when you invoke it.
 
 ## Install
@@ -72,7 +74,7 @@ Source + issues: <https://github.com/holdequity/planfi-equity-comp-planner>.
 
 This skill is Claude Code packaging — but the engine is a standard
 [Model Context Protocol](https://modelcontextprotocol.io) server at
-`https://ai.planfi.app/mcp` (Streamable HTTP, no auth). Connect it from any
+`https://ai.planfi.app/mcp/free` (Streamable HTTP, no auth). Connect it from any
 MCP-capable agent and you get the same PlanFi tools directly. Every tool is
 **self-orchestrating** (it reports its own assumed defaults and suggests the
 next step), so it works well even without the skill wrapper.
@@ -82,23 +84,23 @@ Most clients take an `mcpServers` config block:
 ```json
 {
   "mcpServers": {
-    "planfi": { "type": "http", "url": "https://ai.planfi.app/mcp" }
+    "planfi": { "type": "http", "url": "https://ai.planfi.app/mcp/free" }
   }
 }
 ```
 
 | Client | How to add it |
 |--------|---------------|
-| **Claude Code** | `claude mcp add --transport http planfi https://ai.planfi.app/mcp` |
+| **Claude Code** | `claude mcp add --transport http planfi https://ai.planfi.app/mcp/free` |
 | **Cursor** | add the block above to `~/.cursor/mcp.json` (field: `url`) |
 | **Windsurf** | `~/.codeium/windsurf/mcp_config.json` (field: `serverUrl`) |
 | **Cline / VS Code** | paste the block into the Cline MCP settings |
-| **Claude Desktop & stdio-only clients** | bridge with `npx -y mcp-remote https://ai.planfi.app/mcp` |
+| **Claude Desktop & stdio-only clients** | bridge with `npx -y mcp-remote https://ai.planfi.app/mcp/free` |
 | **ChatGPT (custom connectors / Deep Research)** | add a connector pointing at the MCP URL |
 | **Custom / your own agent** | plain MCP Streamable HTTP — POST JSON-RPC `tools/list` / `tools/call` to the URL with `Accept: application/json, text/event-stream` |
 
 Field names vary slightly by client and version — check your client's MCP docs;
-the URL is always `https://ai.planfi.app/mcp`.
+the URL is always `https://ai.planfi.app/mcp/free`.
 
 ## License
 

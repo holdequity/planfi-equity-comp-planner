@@ -1,12 +1,12 @@
 ---
 name: equity-comp-planner
-version: 1.0.1
+version: 1.0.2
 description: Value and tax employer equity and assess single-stock concentration by orchestrating the public planfi MCP. Use whenever someone wants to understand RSUs / ISOs / NSOs / ESPP, find how many ISOs they can exercise before AMT kicks in, or decide whether they hold too much employer stock and what diversifying would cost in tax — e.g. "value my 5,000 RSUs vesting this year", "when does AMT kick in if I exercise 5,000 ISOs at a $12 strike, FMV $40?", "$600k of my $1M net worth is in Acme stock — should I diversify?".
 ---
 
 # Equity Comp Planner
 
-A thin orchestration layer over the **planfi MCP** (https://ai.planfi.app/mcp).
+A thin orchestration layer over the **planfi MCP** (https://ai.planfi.app/mcp/free).
 All equity valuation, AMT/tax math, and concentration thresholds live server-side. This skill only
 gathers inputs and calls the tools — it does **not** compute anything locally and bakes in no
 defaults of its own. Read-only.
@@ -29,10 +29,12 @@ environment exposes (bare or `mcp__planfi__`-prefixed); below they are written b
 If they're NOT available, tell the user to connect the MCP, then continue:
 
 ```
-claude mcp add --transport http planfi https://ai.planfi.app/mcp
+claude mcp add --transport http planfi https://ai.planfi.app/mcp/free
 ```
 
-(On claude.ai: add a custom connector pointing at https://ai.planfi.app/mcp.)
+> **Try free, then add your key.** The command above adds the **free** connector — `https://ai.planfi.app/mcp/free` (no key needed). Once you create an API key, add a **new** connector with the MCP url — `https://ai.planfi.app/mcp` — and authorize it with your key.
+
+(On claude.ai: add a custom connector pointing at https://ai.planfi.app/mcp/free.)
 
 > **Access — free for personal use.** The planfi MCP is free to try (a small monthly allowance, no key needed). Heavy automated abuse forced us to add limits — but it stays **free for personal use**: email **kam@rateapi.dev** and we'll send you a free API key, no charge. (Companies and commercial use have paid plans.) To use a key, pass it as an `Authorization: Bearer pft_…` header in your MCP client config.
 

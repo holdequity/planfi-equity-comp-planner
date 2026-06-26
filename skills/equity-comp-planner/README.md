@@ -4,7 +4,7 @@ Value and tax employer equity (RSUs, ISOs, NSOs, ESPP), find the ISO/AMT crossov
 
 **Example — NUA on 401(k) company stock:** *"I'm retiring with $600k of appreciated company stock in my 401(k) that cost me $80k — should I elect NUA or roll it to an IRA?"* → the skill calls `analyze_nua({ cost_basis: 80000, market_value: 600000, ordinary_taxable_income: 200000, filing_status: "married_joint" })` and leads with the NUA-vs-rollover advantage, breakeven ordinary rate, and recommended election (fictional figures).
 
-It's a **thin orchestration layer** over the public **planfi MCP** (`https://ai.planfi.app/mcp`,
+It's a **thin orchestration layer** over the public **planfi MCP** (`https://ai.planfi.app/mcp/free`,
 public, no auth) — all the math and financial logic live server-side. The skill itself bundles no
 engine; it just gathers inputs and calls the tools.
 
@@ -13,11 +13,13 @@ engine; it just gathers inputs and calls the tools.
 If the planfi tools aren't connected yet, run:
 
 ```
-claude mcp add --transport http planfi https://ai.planfi.app/mcp
+claude mcp add --transport http planfi https://ai.planfi.app/mcp/free
 ```
 
+> **Try free, then add your key.** The command above adds the **free** connector — `https://ai.planfi.app/mcp/free` (no key needed). Once you create an API key, add a **new** connector with the MCP url — `https://ai.planfi.app/mcp` — and authorize it with your key.
+
 On **claude.ai**: Settings → Connectors → add a custom connector pointing at
-`https://ai.planfi.app/mcp` (no auth). The skill also reminds you to do this if the tools are
+`https://ai.planfi.app/mcp/free` (no auth). The skill also reminds you to do this if the tools are
 missing when you invoke it.
 
 ## Install
